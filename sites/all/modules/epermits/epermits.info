@@ -1,0 +1,4 @@
+name = E-Permits
+description = Provides online support for Township-issued permits
+core = 7.x
+package = E-Permits
