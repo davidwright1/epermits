@@ -1,91 +1,100 @@
 <?php
-
-/**
- * @file
- * Provide support logic for applying, updating, and buying Township-issued permits.
- */
-
-/**
- * Implements hook_commerce_line_item_type_info().
- */
-function epermits_commerce_line_item_type_info() {
-  // Define fence permit form fields here.
-  // Maybe have a separate function to build out certain many-uses fields.
-  
-  $line_item_types['permit_test'] = array(
-    'name' => t('Permit Test LI Type'),
-    'description' => t('Permit Line Item Type'),
-    'product' => TRUE,
-
-    // Here you can change the text in the submit button in the order admin form.
-    'add_form_submit_value' => t('Apply for Permit'),
-
-    // 'base' basically provides magic naming for a set of callbacks
-    // including the settings_form, checkout_form, etc. Here we'll use the
-    // forms and callbacks provided for Commerce Product Reference module for
-    // its product line item, so we'll use
-    // commerce_product_line_item_configuration()
-    // and commerce_product_line_item_title(), etc.
-    // See example_line_item_2 for explicit callbacks.
-    'base' => 'commerce_product_line_item',
-    'callbacks' => array(
-      'configuration' => 'epermits_configuration',
-      'title' => 'epermits_title',
-      'add_form' => 'epermits_add_form',
-      'add_form_submit' => 'epermits_add_form_submit',
-    ),
-  );
-
-  return $line_item_types;
-}
-
-function epermits_configuration($line_item_type) {
-  dpm($line_item_type);
-  dpm('hi)');
-  $field = array(
-    'translatable' => '0',
-    'settings' => array(
-      'max_length' => '255',
-    ),
-    'field_name' => 'field_permit_name',
-    'type' => 'text',
-    'active' => '1',
-    'locked' => '0',
-    'cardinality' => '1',
-  );
-  field_create_field($field);
-
-  $instance = array(
-    'label' => 'Permit Name',
-    'widget' => array(
-      'weight' => '2',
-      'type' => 'text_textfield',
-      'active' => 1,
-      'settings' => array(
-        'size' => '60',
-      ),
-    ),
-    'settings' => array(
-      'text_processing' => '0',
-      'user_register_form' => FALSE,
-    ),
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'type' => 'text_default',
-        'settings' => array(),
-        'weight' => 4,
-      ),
-    ),
-    'required' => 1,
-    'description' => '',
-    'commerce_cart_settings' => array(
-      'field_access' => 1,
-    ),
-    'default_value' => NULL,
-    'field_name' => 'field_permit_name',
-    'entity_type' => 'commerce_line_item',
-    'bundle' => 'permit',
-  );
-  field_create_instance($instance);
-}
+//
+///**
+// * @file
+// * Provide support logic for applying, updating, and buying Township-issued permits.
+// */
+//
+///**
+// * Implements hook_commerce_line_item_type_info().
+// */
+//function epermits_commerce_line_item_type_info() {
+//  // Define fence permit form fields here.
+//  // Maybe have a separate function to build out certain many-uses fields.
+//  
+//  $line_item_types['permit_test'] = array(
+//    'name' => t('Permit Test LI Type'),
+//    'description' => t('Permit Line Item Type'),
+//    'product' => TRUE,
+//
+//    // Here you can change the text in the submit button in the order admin form.
+//    'add_form_submit_value' => t('Apply for Permit'),
+//
+//    // 'base' basically provides magic naming for a set of callbacks
+//    // including the settings_form, checkout_form, etc. Here we'll use the
+//    // forms and callbacks provided for Commerce Product Reference module for
+//    // its product line item, so we'll use
+//    // commerce_product_line_item_configuration()
+//    // and commerce_product_line_item_title(), etc.
+//    // See example_line_item_2 for explicit callbacks.
+//    'base' => 'commerce_product_line_item',
+//    'callbacks' => array(
+//      'configuration' => 'epermits_configuration',
+//      'title' => 'epermits_title',
+//      'add_form' => 'epermits_add_form',
+//      'add_form_submit' => 'epermits_add_form_submit',
+//    ),
+//  );
+//
+//  return $line_item_types;
+//}
+//
+//function epermits_configuration($line_item_type) {
+//  dpm($line_item_type);
+//  $field = array(
+//    'translatable' => '0',
+//    'settings' => array(
+//      'max_length' => '255',
+//    ),
+//    'field_name' => 'field_permit_name',
+//    'type' => 'text',
+//    'active' => '1',
+//    'locked' => '0',
+//    'cardinality' => '1',
+//  );
+//  field_create_field($field);
+//
+//  $instance = array(
+//    'label' => 'Permit Name',
+//    'widget' => array(
+//      'weight' => '2',
+//      'type' => 'text_textfield',
+//      'active' => 1,
+//      'settings' => array(
+//        'size' => '60',
+//      ),
+//    ),
+//    'settings' => array(
+//      'text_processing' => '0',
+//      'user_register_form' => FALSE,
+//    ),
+//    'display' => array(
+//      'default' => array(
+//        'label' => 'above',
+//        'type' => 'text_default',
+//        'settings' => array(),
+//        'weight' => 4,
+//      ),
+//    ),
+//    'required' => 1,
+//    'description' => '',
+//    'commerce_cart_settings' => array(
+//      'field_access' => 1,
+//    ),
+//    'default_value' => NULL,
+//    'field_name' => 'field_permit_name',
+//    'entity_type' => 'commerce_line_item',
+//    'bundle' => 'permit',
+//  );
+//  field_create_instance($instance);
+//}
+//
+//function epermits_add_form() {
+//  $form = array();
+//  $form['tester'] = array(
+//    '#type' => 'textfield',
+//    '#title' => t('Tester'),
+//    '#description' => t('Testing add form on li\'s.'),
+//  );
+//  return $form;
+//}
