@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Blackman Mechanical Permit feature.
+ */
+
+include_once 'blackman_mechanical_permit.features.inc';
