@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Blackman Township Electrical LI Type feature.
+ */
+
+include_once 'blackman_township_electrical_li_type.features.inc';
