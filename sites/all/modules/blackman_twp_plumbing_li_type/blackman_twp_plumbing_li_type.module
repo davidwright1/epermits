@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Blackman Twp Plumbing LI Type feature.
+ */
+
+include_once 'blackman_twp_plumbing_li_type.features.inc';
